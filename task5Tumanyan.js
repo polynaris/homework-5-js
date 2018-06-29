@@ -111,12 +111,12 @@ Salad.prototype.weight = function() {
 
 Salad.prototype.calculatePrice = function() {
     return Salad.TYPE_COST_MAP.get(this.type) *
-        this.weight;
+        this.weight / 100;
 }
 
 Salad.prototype.calculateCalories = function() {
     return Salad.TYPE_CALORIES_MAP.get(this.type) *
-        this.weight;
+        this.weight / 100;
 }
 
 function Drink(type) {
@@ -145,17 +145,20 @@ function Order() {
 Order.prototype.addItem = function(item) {
     if (!this.closed) {
         this.items.push(item);
-    }
+    } else
+        console.log('You can not add this item. The order has already been paid.');
 }
 
 Order.prototype.deleteItem = function(number) {
     if (!this.closed) {
         this.items.splice(number, 1);
-    }
+    } else
+        console.log('You can not delete this item. The order has already been paid.');
 }
 
 Order.prototype.pay = function() {
     this.closed = true;
+    console.log('Your order is payed');
 }
 
 Order.prototype.calculateSum = function() {
@@ -181,11 +184,11 @@ var drink = new Drink(Drink.TYPE_COFFEE);
 order.addItem(hamb);
 order.addItem(salad);
 order.addItem(drink);
-console.log('Your order:' + order);
 console.log('Calories:' + order.calculateCalories());
 console.log('Sum of your order: ' + order.calculateSum());
-order.deleteItem(2);
-console.log('Your order:' + order);
+order.deleteItem(1);
+console.log('Your order:', order);
 console.log('Calories:' + order.calculateCalories());
 order.pay();
-console.log('Your order is payed');
+var drink = new Drink(Drink.TYPE_COLA);
+order.addItem(drink);
