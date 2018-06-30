@@ -57,13 +57,13 @@ function Food() {}
 
 Food.prototype.calculatePrice = function() {
     if (this.constructor === Food) {
-        throw new Error('Cannot instanciate abstract class');
+        throw new Error('Cannot call this method on an instance of the food class');
     }
 }
 
 Food.prototype.calculateCalories = function() {
     if (this.constructor === Food) {
-        throw new Error('Cannot instanciate abstract class');
+        throw new Error('Cannot call this method on an instance of the food class');
     }
 }
 
